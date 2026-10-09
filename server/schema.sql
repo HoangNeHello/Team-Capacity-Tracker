@@ -1,6 +1,4 @@
--- Team Capacity Tracker schema (matches team-capacity-tracker-erd.pdf).
--- Safe to run repeatedly: drops tables first, children before parents.
-
+-- schema.sql
 DROP TABLE IF EXISTS tasks;
 DROP TABLE IF EXISTS members;
 DROP TABLE IF EXISTS teams;
@@ -32,6 +30,6 @@ CREATE TABLE tasks (
   title          TEXT NOT NULL,
   estimate_hours INTEGER NOT NULL CHECK (estimate_hours > 0),
   deadline       DATE NOT NULL,
-  status         TEXT NOT NULL CHECK (status IN ('to do', 'doing', 'done')),
+  status         TEXT NOT NULL CHECK (status IN ('todo', 'doing', 'done')),
   assignee_id    INTEGER REFERENCES members(id) ON DELETE SET NULL
 );
