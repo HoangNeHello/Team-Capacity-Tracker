@@ -29,13 +29,11 @@ Requires Node (current LTS) and PostgreSQL.
 ```bash
 # API: http://localhost:3001
 cd server
-cp .env.example .env
 npm install
 npm run dev
 
 # Client: http://localhost:5173 (in a second terminal)
 cd client
-cp .env.example .env
 npm install
 npm run dev
 ```
