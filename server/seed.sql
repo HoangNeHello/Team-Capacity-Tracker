@@ -1,8 +1,10 @@
 -- seed.sql
 TRUNCATE users, teams, members, tasks RESTART IDENTITY CASCADE;
 
+-- Replace 'placeholder' with the actual hashed password
+-- node -e "import('bcrypt').then(b => b.default.hash('demo1234', 10)).then(console.log)"
 INSERT INTO "users" (email, password_hash)
-VALUES ('demo@example.com', 'placeholder');
+VALUES ('demo@example.com', '$2b$10$FeW2RgmAj905UNiHBD0S0OfAcX75J8mEyAI9.TIFA7O.kG9WP/REa');
 
 INSERT INTO teams (name, owner_id)
 VALUES ('Product Team', 1);
