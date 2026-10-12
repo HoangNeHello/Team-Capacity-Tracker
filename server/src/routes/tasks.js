@@ -85,6 +85,12 @@ async function deleteTask(req, res) {
     res.status(204).end();
 }
 
+// Runs before any route with :id. Non-number id ('abc') → 404, instead of a Postgres error (500).
+router.param('id', (req, res, next, id) => {
+    if (!/^\d+$/.test(id)) return res.status(404).json({ error: 'Task not found' });
+    next();
+});
+
 // URL → function
 router.get('/', listTasks);
 router.post('/', createTask);

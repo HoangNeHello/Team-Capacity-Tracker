@@ -4,23 +4,64 @@ Track each team member's workload against their capacity.
 
 ## Structure
 
-```
-team-capacity-tracker/
-├── client/            React (Vite)
-│   └── src/
-│       ├── pages/
-│       ├── components/
-│       └── api/       all fetch calls here
-├── server/            Express
-│   ├── src/
-│   │   ├── routes/
-│   │   ├── middleware/
-│   │   ├── db/        connection + queries
-│   │   └── load.js
-│   ├── tests/
-│   └── schema.sql
-└── README.md
-```
+Directory structure:
+    ├── README.md
+    ├── client/
+    │   ├── index.html
+    │   ├── package.json
+    │   ├── vite.config.js
+    │   └── src/
+    │       ├── App.jsx
+    │       ├── formatDate.js
+    │       ├── index.css
+    │       ├── main.jsx
+    │       ├── api/
+    │       │   ├── ApiError.js
+    │       │   ├── client.js
+    │       │   └── mock.js
+    │       ├── auth/
+    │       │   ├── AuthContext.jsx
+    │       │   └── RequireAuth.jsx
+    │       ├── components/
+    │       │   ├── AppShell.jsx
+    │       │   ├── AuthForm.jsx
+    │       │   ├── Avatar.jsx
+    │       │   ├── ConfirmDialog.jsx
+    │       │   ├── EmptyState.jsx
+    │       │   ├── ErrorBanner.jsx
+    │       │   ├── Modal.jsx
+    │       │   ├── Spinner.jsx
+    │       │   ├── StatusLozenge.jsx
+    │       │   └── WorkloadBar.jsx
+    │       └── pages/
+    │           ├── LoginPage.jsx
+    │           ├── MemberForm.jsx
+    │           ├── MembersTab.jsx
+    │           ├── NotFoundPage.jsx
+    │           ├── SignUpPage.jsx
+    │           ├── TaskForm.jsx
+    │           ├── TasksTab.jsx
+    │           ├── TeamForm.jsx
+    │           ├── TeamLayout.jsx
+    │           ├── TeamsPage.jsx
+    │           └── WorkloadTab.jsx
+    └── server/
+        ├── package.json
+        ├── schema.sql
+        ├── seed.sql
+        └── src/
+            ├── app.js
+            ├── db.js
+            ├── index.js
+            ├── load.js
+            ├── load.test.js
+            └── routes/
+                ├── auth.js
+                ├── members.js
+                ├── tasks.js
+                ├── teams.js
+                └── workload.js
+
 
 ## Running locally
 
