@@ -60,4 +60,28 @@ Browser (React) → API server (Express) → Database (PostgreSQL)
 - I can explain every file and every decision without notes
 
 ## Progress log
-(Paste the end-of-session note here after each session, then re-upload this file.)
+
+### 2026-11-12 — Full repo scan: core build is finished
+Status: **core features complete and merged to `main`; deployed on Render (client + API) and Neon (database). Remaining work is polish for the portfolio, not features.**
+
+Core features (all 6 done, in `main` since PR #3):
+1. Sign up / log in — `server/src/routes/auth.js` (bcrypt hashes, JWT), `client/src/pages/SignUpPage.jsx`, `LoginPage.jsx`, `auth/AuthContext.jsx`, `RequireAuth.jsx`
+2. Create team — `routes/teams.js`, `pages/TeamsPage.jsx`, `TeamForm.jsx`; every team route checks the owner and returns 404 for other users' teams or bad ids
+3. Members with weekly hours — `routes/members.js` (list/create/update/delete), `pages/MembersTab.jsx`, `MemberForm.jsx`
+4. Tasks with estimate, deadline, assignee, status (todo/doing/done) — `routes/tasks.js`, `pages/TasksTab.jsx`, `TaskForm.jsx`; deleting a member sets their tasks to Unassigned (schema `ON DELETE SET NULL`)
+5. Workload dashboard — `server/src/load.js` (pure `getLoad()`: under <80%, near 80–100%, over >100%; 0-hour member → percent null) via `routes/workload.js`, shown in `pages/WorkloadTab.jsx` + `components/WorkloadBar.jsx`
+6. Edit and delete members and tasks — PUT/DELETE routes above, `components/ConfirmDialog.jsx` for deletes
+
+Also in place: `server/schema.sql` + `seed.sql`; input validation on every write route; empty/loading/error components (`EmptyState`, `Spinner`, `ErrorBanner`); 404 page; one phone breakpoint (`@media max-width: 600px` in `index.css`).
+
+Tests: `server/src/load.test.js` — 8 tests, all passing (`npx vitest run`, 12 Nov 2026). No API-route tests yet.
+
+Definition of done — where each item stands:
+- Live link that works — deployed (Render + Neon). URL not yet written in the README.
+- README — has structure + local run steps only. Still missing: what/why, live link, screenshots, limitations, how to run tests.
+- Tests pass for the load calculation — done.
+- Can explain every file — every function has a what/why comment; walkthrough not yet rehearsed.
+
+Left to do (polish, in order): README (link, what/why, screenshots, limitations) → delete `client/src/api/mock.js` + `VITE_USE_MOCK` switch in `api/client.js` → remove demo user from `seed.sql` and from the live DB if it was ever seeded (password is public in the repo) → optional API-route tests → check phone layout on a real screen.
+
+Stretch goals: none started (by design).
