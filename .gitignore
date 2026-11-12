@@ -8,3 +8,6 @@ dist/
 docs/
 CLAUDE.MD
 server/.env.neon
+.specify/
+.claude/*
+!.claude/agents/
